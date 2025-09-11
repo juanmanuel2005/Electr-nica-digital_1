@@ -43,8 +43,6 @@ assign oY = ~iC;
 endmodule
 
 ```
-### Retroalimentación  
-
 Se pudo observar cómo se representa el circuito en forma de código Verilog (.v), mostrando la relación entre las entradas y salidas mediante expresiones booleanas.      
 
 ## Ejercicio 3
