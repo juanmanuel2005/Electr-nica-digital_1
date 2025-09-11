@@ -379,7 +379,7 @@ La ecuacion asignada en el primer parcial practico fue:
    
 Realizando las simplificacion con mapa de mapa de karnaugh y tablas de verdad se llego a esto:
 
-![Tabla de verdad](./imagenes/tabla_de_verdad.png)
+![Tabla de verdad](./imagenes/tabla_de_verdad.png)            
 Tabla de verdad 
 
 | A | B | C | D | A' | B' | C' | D' | BC | B'D' | BC+B'D' | SALIDA | Mintermino | Maxitermino | #  |
@@ -401,7 +401,8 @@ Tabla de verdad
 | 1 | 1 | 1 | 0 | 0  | 0  | 0  | 1  | 1  | 0    | 1       | 1      | ABCD'      | A'+B'+C'+D  | 14 |
 | 1 | 1 | 1 | 1 | 0  | 0  | 0  | 0  | 1  | 0    | 1       | 1      | ABCD       | A'+B'+C'+D' | 15 |
 
-![Mapa de karnaugh](./imagenes/mapa_de_karnaugh.png)
+![Mapa de karnaugh](./imagenes/mapa_de_karnaugh.png)                      
+
 Mapa de karnaugh
 
 | AB\CD | 00 | 01 | 11 | 10 |
