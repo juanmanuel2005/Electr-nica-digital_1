@@ -112,6 +112,24 @@ assign oY = ~iC;
 endmodule
 
 ```
+Tambien fue necesario hacer una correcion pero despues de eso queda asi:
+```verilog
+module circuito_uno(iA,iB,iC,oX,oY); // Se definen las entradas y salidas
+    input iA,iB,iC;                        
+    output oX,oY; 
+    wire e;
+
+    // Salida intermedia: AND entre A y B
+    assign e = iA & iB;
+
+    // OR entre e y NOT de C
+    assign oX = e | ~iC;
+
+    // La salida oY es simplemente la negación de iC
+    assign oY = ~iC;                    
+
+endmodule
+```
 Se pudo observar cómo se representa el circuito en forma de código Verilog (.v), mostrando la relación entre las entradas y salidas mediante expresiones booleanas.      
 
 ## Ejercicio 3
@@ -149,6 +167,21 @@ not g6(oY,iB);			    //Compuerta NOT
 not g7(oY,iC);			    //Compuerta NOT 
 xor g8(oZ,iA,iB,iC);		//Compuerta OREX 3-In 
 xnor g9(oZ,iA,iB,iC);		//Compuerta NOREX 3-In 
+
+endmodule
+```
+
+A este tambien fue necesario realizarle una pequeña correccion pero despues de esto quedo asi:
+```verilog
+corregido 
+module Compuertas(iA, iB, iC, oW, oX, oY, oZ); 
+input iA, iB, iC; 
+output oW, oX, oY, oZ; 
+
+assign oW = iA ? ~(iA & iB & iC) : (iA & iB & iC);  // Mux entre NAND y AND (basado en iA)
+assign oX = iA ? ~(iA | iB | iC) : (iA | iB | iC);  // Mux entre NOR y OR (basado en iA)
+assign oY = iB ? ~iC : ~iA;                         // Mux entre NOT(iC) y NOT(iA) (basado en iB; ignora g7 para simplicidad)
+assign oZ = iA ? ~(iA ^ iB ^ iC) : (iA ^ iB ^ iC);  // Mux entre XNOR y XOR (basado en iA)
 
 endmodule
 ```
@@ -300,6 +333,35 @@ table
 endtable 
 
 endprimitive
+```
+
+Se me asigno sustentar este punto 7 en clase ademas de hacer una cambio para la defensa de este el cual quedo asi:
+
+```verilog
+module Compuertas(oW,iA,iB,iC); 
+input iA,iB,iC; 
+output oW; 
+ 
+MiFUNCION(oW,iA,iB,iC);	
+
+endmodule 
+//
+primitive MiFUNCION(X,A,B,C); 
+output X; 
+input A,B,C; 
+table 
+  //A B C : X			//Tabla de verdad 
+    0 0 0 : 1;			//m0 
+    0 0 1 : 0; 			//m1 
+    0 1 0 : 1; 			//m2 
+    0 1 1 : 1; 			//m3 
+    1 0 0 : 0; 			//m4 
+    1 0 1 : 1; 			//m5 
+    1 1 0 : 0; 			//m6 
+    1 1 1 : 0; 			//m7 
+endtable 
+
+endprimitive 
 ```
 
 ## Ejercicio 8
