@@ -65,24 +65,24 @@ Error: Elapsed time: 00:00:01
 
 Error: Total CPU time (on all processors): 00:00:01
 
-El fallo se debe a que en el archivo Verilog se estaban reutilizando las mismas salidas (oW, oX, oY, oZ) para varias compuertas.  
-La solución consiste en asignar *una salida diferente por cada operación lógica*, garantizando que cada output tenga una sola definición.     
+El fallo es debido a que en distintas funciones se repite salida asi que se puede solucionar agragando otras salidas diferentes para los repetidos.     
 ```
 #### Corregido quedaria asi     
 
 ```verilog
-module Compuertas(iA, iB, iC, oAND, oNAND, oOR, oNOR, oNOTA, oNOTB, oXOR, oXNOR);
-    input iA, iB, iC;
-    output oAND, oNAND, oOR, oNOR, oNOTA, oNOTB, oXOR, oXNOR;
+module Compuertas(iA,iB,iC,oS,oT,oU,oV,oW,oX,oY,oZ); 
+input iA,iB,iC; 
+output oS,oT,oU,oV,oW,oX,oY,oZ; 
 
-    assign oAND  = iA & iB & iC;      // AND 3 entradas
-    assign oNAND = ~(iA & iB & iC);   // NAND 3 entradas
-    assign oOR   = iA | iB | iC;      // OR 3 entradas
-    assign oNOR  = ~(iA | iB | iC);   // NOR 3 entradas
-    assign oNOTA = ~iA;               // NOT de A
-    assign oNOTB = ~iB;               // NOT de B
-    assign oXOR  = iA ^ iB ^ iC;      // XOR 3 entradas
-    assign oXNOR = ~(iA ^ iB ^ iC);   // XNOR 3 entradas
+assign oS = iA&iB&iC;		  //Compuerta AND 3-In 
+assign oT = ~(iA&iB&iC);	//Compuerta NAND 3-In 
+assign oU = iA|iB|iC;			//Compuerta OR 3-In 
+assign oV = ~(iA|iB|iC);	//Compuerta NOR 3-In 
+assign oW = ~iB;			    //Compuerta NOT 
+assign oX = ~iA;			    //Compuerta NOT 
+assign oY = iA^iB^iC;			//Compuerta OREX 3-In 
+assign oZ = ~(iA^iB^iC);	//Compuerta NOREX 3-In 
+
 endmodule
 ```
 
